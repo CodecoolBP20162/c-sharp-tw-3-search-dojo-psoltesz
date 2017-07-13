@@ -22,8 +22,13 @@ namespace SearchDojo
             try
             {
                 Regex r = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                Match m = r.Match(textBox1.Text);
-                textBox2.Text = m.Groups[1].ToString();
+                MatchCollection m = r.Matches(textBox1.Text);
+                string result = "";
+                foreach (Match item in m)
+                {
+                    result += item.Groups[1].ToString();
+                }
+                textBox2.Text = result;
             }
             catch { MessageBox.Show("Something went wrong. Please try again."); };
         }
